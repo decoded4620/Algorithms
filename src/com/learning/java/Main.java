@@ -25,10 +25,9 @@ public class Main {
                 System.err.printf("Class supplied %s was not an AlgorithmDemo class %n", className);
                 ex.printStackTrace();
             }
+        } else {
+            demoClass = PrintPermutations.class;
         }
-
-        demoClass = PrintPermutations.class;
-
         AlgorithmDemo instance = null;
 
         try {

@@ -34,6 +34,13 @@ public class SpaceTimeComplexity {
         _totalAnswers++;
     }
 
+    public void reset() {
+        _recursionIdx = 0;
+        _maxStack = 0;
+        _totalCalls = 0;
+        _totalTime = 0;
+        _totalAnswers = 0;
+    }
     public void printStats() {
         System.out.printf("Total Calls: %d, Max Stack %d, Total Answers %d, Total Time %d (%f sec)%n", _totalCalls, _maxStack, _totalAnswers, _totalTime, _totalTime / 1_000_000_000.0);
     }

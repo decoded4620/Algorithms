@@ -74,6 +74,7 @@ public class PrintPermutations implements AlgorithmDemo {
             findPermutations(chars, 0, i);
             _spaceTimeComplexity.timeStop();
             _spaceTimeComplexity.printStats();
+            _spaceTimeComplexity.reset();
         }
     }
 
@@ -85,29 +86,30 @@ public class PrintPermutations implements AlgorithmDemo {
      * The complexity is exponential, and even at 127358058 permutations per second, it is not feasible
      * to find permutations for arrays larger than 16 elements
      *
+     * Selected class from input args: com.learning.java.backtracking.PrintPermutations
      * Find permutations for {1}
-     * Permutations: 2 Max Stack: 2, Total Calls: 3 Total time: 0.000022 sec
+     * Total Calls: 3, Max Stack 2, Total Answers 2, Total Time 24300 (0.000024 sec)
      * Find permutations for {12}
-     * Permutations: 8 Max Stack: 3, Total Calls: 13 Total time: 0.000003 sec
+     * Total Calls: 10, Max Stack 3, Total Answers 6, Total Time 3700 (0.000004 sec)
      * Find permutations for {123}
-     * Permutations: 32 Max Stack: 4, Total Calls: 54 Total time: 0.000008 sec
+     * Total Calls: 41, Max Stack 4, Total Answers 24, Total Time 9800 (0.000010 sec)
      * Find permutations for {1234}
-     * Permutations: 152 Max Stack: 5, Total Calls: 260 Total time: 0.000044 sec
+     * Total Calls: 206, Max Stack 5, Total Answers 120, Total Time 54900 (0.000055 sec)
      * Find permutations for {12345}
-     * Permutations: 872 Max Stack: 6, Total Calls: 1497 Total time: 0.000051 sec
+     * Total Calls: 1237, Max Stack 6, Total Answers 720, Total Time 161500 (0.000162 sec)
      * Find permutations for {123456}
-     * Permutations: 5912 Max Stack: 7, Total Calls: 10157 Total time: 0.000251 sec
+     * Total Calls: 8660, Max Stack 7, Total Answers 5040, Total Time 248700 (0.000249 sec)
      * Find permutations for {1234567}
-     * Permutations: 46232 Max Stack: 8, Total Calls: 79438 Total time: 0.001915 sec
+     * Total Calls: 69281, Max Stack 8, Total Answers 40320, Total Time 1461700 (0.001462 sec)
      * Find permutations for {12345678}
-     * Permutations: 409112 Max Stack: 9, Total Calls: 702968 Total time: 0.003858 sec
+     * Total Calls: 623530, Max Stack 9, Total Answers 362880, Total Time 5012500 (0.005013 sec)
      * Find permutations for {123456789}
-     * Permutations: 4037912 Max Stack: 10, Total Calls: 6938269 Total time: 0.025696 sec
+     * Total Calls: 6235301, Max Stack 10, Total Answers 3628800, Total Time 25924100 (0.025924 sec)
      * Find permutations for {123456789a}
-     * Permutations: 43954712 Max Stack: 11, Total Calls: 75526581 Total time: 0.339806 sec
+     * Total Calls: 68588312, Max Stack 11, Total Answers 39916800, Total Time 401957500 (0.401958 sec)
      * Find permutations for {123456789ab}
-     * Permutations: 522956312 Max Stack: 12, Total Calls: 898586326 Total time: 2.786352 sec
+     * Total Calls: 823059745, Max Stack 12, Total Answers 479001600, Total Time 3407176100 (3.407176 sec)
      * Find permutations for {123456789abc}
-     * Permutations: 6749977112 Max Stack: 13, Total Calls: 11598363012 Total time: 52.918371 sec
+     * Total Calls: 10699776686, Max Stack 13, Total Answers 6227020800, Total Time 56522005800 (56.522006 sec)
      */
 }
