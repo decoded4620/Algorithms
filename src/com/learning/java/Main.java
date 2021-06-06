@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) {
         // change this to any other class, or pass it in as an argument
         if (args.length > 0) {
-            String className = args[0];
-
+            var className = args[0];
+            System.out.printf("Selected class from input args: %s%n", className);
             try {
                 demoClass = (Class<? extends AlgorithmDemo>) Class.forName(className);
             } catch (ClassNotFoundException ex) {

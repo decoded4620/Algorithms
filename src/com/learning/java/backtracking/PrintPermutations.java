@@ -1,7 +1,7 @@
 package com.learning.java.backtracking;
 
 import com.learning.java.AlgorithmDemo;
-import com.learning.java.utils.StopWatch;
+import com.learning.java.utils.SpaceTimeComplexity;
 
 
 /**
@@ -10,12 +10,8 @@ import com.learning.java.utils.StopWatch;
  * Permutations of an array of characters*
  */
 public class PrintPermutations implements AlgorithmDemo {
-
     // records different aspects of the execution.
-    long totalCalls = 0;
-    long totalPermutations = 0;
-    long maxStack = 0;
-    long recursionIdx = 0;
+    private SpaceTimeComplexity _spaceTimeComplexity = new SpaceTimeComplexity();
 
     /**
      * Swap characters at two indices of a character list, with a left fixed anchor
@@ -35,45 +31,49 @@ public class PrintPermutations implements AlgorithmDemo {
         chars[i] = startChar;
     }
 
-    public void permutationsRecursive(char[] chars, int l, int r) {
+    /**
+     * Finds all permutations of the character array.
+     *
+     * @param chars the array
+     * @param l the left boundary (from the beginning)
+     * @param r the right boundary (from the end)
+     */
+    public void findPermutations(char[] chars, int l, int r) {
         // record the total calls to this method
-        totalCalls++;
-
+        _spaceTimeComplexity.call();
         // increase the stack size
-        recursionIdx++;
+        _spaceTimeComplexity.push();
 
-        // record the max stack size.
-        maxStack = Math.max(maxStack, recursionIdx);
+        // this means we have reached an answer for a single permutation of the array.
         if (l >= r) {
-            // optionally print
-//            System.out.println(new String(chars));
-            // record a new permutation
-            totalPermutations++;
+            // record the new permutation
+            _spaceTimeComplexity.addAnswer();
         } else {
+            // keep searching
             for (var i = l; i <= r; i++) {
                 // swap and print remaining permutations
                 doSwap(chars, l, i);
-                permutationsRecursive(chars, l + 1, r);
+                findPermutations(chars, l + 1, r);
                 // back tracking (swap back after printing remaining permutations)
                 doSwap(chars, l, i);
             }
         }
 
         // reduce stack size
-        recursionIdx--;
+        _spaceTimeComplexity.pop();
     }
 
     @Override
     public void run() {
         // the maximum amount of characters that can have permutations printed recursively in reasonable time.
         var chars = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd'};
-        var stopWatch = new StopWatch();
+
         for (int i = 1; i < chars.length; i++) {
             System.out.println("Find permutations for {" + new String(chars).substring(0, i) + "}");
-            stopWatch.start();
-            permutationsRecursive(chars, 0, i);
-            long totalTimeNanos = stopWatch.stop();
-            System.out.printf("Permutations: %d Max Stack: %d, Total Calls: %d Total time: %f sec%n", totalPermutations, maxStack, totalCalls, totalTimeNanos / 1000000000.0);
+            _spaceTimeComplexity.timeStart();
+            findPermutations(chars, 0, i);
+            _spaceTimeComplexity.timeStop();
+            _spaceTimeComplexity.printStats();
         }
     }
 
