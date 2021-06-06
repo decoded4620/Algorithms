@@ -6,12 +6,12 @@ import com.learning.java.utils.SpaceTimeComplexity;
 
 /**
  * An algorithm demonstration for different ways of solving the permutations problem.
- * <p>
- * Permutations of an array of characters*
+ *
+ * Permutations of an array of characters
  */
 public class PrintPermutations implements AlgorithmDemo {
     // records different aspects of the execution.
-    private SpaceTimeComplexity _spaceTimeComplexity = new SpaceTimeComplexity();
+    private final SpaceTimeComplexity _spaceTimeComplexity = new SpaceTimeComplexity();
 
     /**
      * Swap characters at two indices of a character list, with a left fixed anchor
