@@ -128,4 +128,42 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
             _spaceTimeComplexity.reset();
         }
     }
+
+    /*
+     * The output is as follows for the first 10 fibonacci numbers
+     *
+     * --------------------- Recursive Fibonacci ---------------------
+     * Fibo: 0, Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 18100 (0.000018 sec)
+     * Fibo: 1, Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 2000 (0.000002 sec)
+     * Fibo: 1, Total Calls: 3, Max Stack 2, Total Answers 1, Total Time 2500 (0.000003 sec)
+     * Fibo: 2, Total Calls: 5, Max Stack 3, Total Answers 1, Total Time 3800 (0.000004 sec)
+     * Fibo: 3, Total Calls: 9, Max Stack 4, Total Answers 1, Total Time 5900 (0.000006 sec)
+     * Fibo: 5, Total Calls: 15, Max Stack 5, Total Answers 1, Total Time 5300 (0.000005 sec)
+     * Fibo: 8, Total Calls: 25, Max Stack 6, Total Answers 1, Total Time 6600 (0.000007 sec)
+     * Fibo: 13, Total Calls: 41, Max Stack 7, Total Answers 1, Total Time 9500 (0.000010 sec)
+     * Fibo: 21, Total Calls: 67, Max Stack 8, Total Answers 1, Total Time 17200 (0.000017 sec)
+     * Fibo: 34, Total Calls: 109, Max Stack 9, Total Answers 1, Total Time 35900 (0.000036 sec)
+     * --------------------- Memoized Fibonacci ---------------------
+     * Fibo: 0, Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 5600 (0.000006 sec)
+     * Fibo: 1, Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1400 (0.000001 sec)
+     * Fibo: 1, Total Calls: 3, Max Stack 2, Total Answers 1, Total Time 20300 (0.000020 sec)
+     * Fibo: 2, Total Calls: 3, Max Stack 3, Total Answers 1, Total Time 11300 (0.000011 sec)
+     * Fibo: 3, Total Calls: 5, Max Stack 4, Total Answers 1, Total Time 6200 (0.000006 sec)
+     * Fibo: 5, Total Calls: 7, Max Stack 5, Total Answers 1, Total Time 5200 (0.000005 sec)
+     * Fibo: 8, Total Calls: 11, Max Stack 6, Total Answers 1, Total Time 14700 (0.000015 sec)
+     * Fibo: 13, Total Calls: 17, Max Stack 7, Total Answers 1, Total Time 10800 (0.000011 sec)
+     * Fibo: 21, Total Calls: 27, Max Stack 8, Total Answers 1, Total Time 17200 (0.000017 sec)
+     * Fibo: 34, Total Calls: 43, Max Stack 9, Total Answers 1, Total Time 29800 (0.000030 sec)
+     * --------------------- Tabulated Fibonacci ---------------------
+     * Fibo: 0 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 5500 (0.000006 sec)
+     * Fibo: 1 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1000 (0.000001 sec)
+     * Fibo: 1 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
+     * Fibo: 2 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
+     * Fibo: 3 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
+     * Fibo: 5 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1300 (0.000001 sec)
+     * Fibo: 8 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
+     * Fibo: 13 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1400 (0.000001 sec)
+     * Fibo: 21 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1300 (0.000001 sec)
+     * Fibo: 34 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1000 (0.000001 sec)
+     */
 }
