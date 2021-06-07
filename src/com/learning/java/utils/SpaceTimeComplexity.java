@@ -4,6 +4,7 @@ public class SpaceTimeComplexity {
     private final StopWatch _stopWatch = new StopWatch();
     // records different aspects of the execution.
     private long _totalCalls = 0;
+    private long _totalIterations = 0;
     private long _totalAnswers = 0;
     private long _maxStack = 0;
     private long _recursionIdx = 0;
@@ -19,6 +20,10 @@ public class SpaceTimeComplexity {
 
     public void call() {
         _totalCalls++;
+    }
+
+    public void iterate() {
+        _totalIterations++;
     }
 
     public void push() {
@@ -42,6 +47,7 @@ public class SpaceTimeComplexity {
         _totalAnswers = 0;
     }
     public void printStats() {
-        System.out.printf("Total Calls Or Iterations: %d, Max Stack %d, Total Answers %d, Total Time %d (%f sec)%n", _totalCalls, _maxStack, _totalAnswers, _totalTime, _totalTime / 1_000_000_000.0);
+        System.out.printf("Total Calls: %d, Total Iterations: %d, Max Stack %d, Total Answers %d, Total Time %d (%f sec)%n",
+                _totalCalls, _totalIterations, _maxStack, _totalAnswers, _totalTime, _totalTime / 1_000_000_000.0);
     }
 }
