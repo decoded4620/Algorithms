@@ -1,6 +1,5 @@
 package com.learning.java.algorithmdemo;
 
-import com.learning.java.algorithmdemo.AlgorithmDemo;
 import com.learning.java.utils.SpaceTimeComplexity;
 
 /**
@@ -86,6 +85,7 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
      * @return the longest common subsequence.
      */
     private int lcsDynamic(char[] seq1, char[] seq2, int idx1, int idx2) {
+        _spaceTimeComplexity.call();
         _spaceTimeComplexity.push();
 
         // store the lcs for a given indices. Note this handles initializing the base case as well (e.g. i or j == 0) since
@@ -95,7 +95,7 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
         // skip the base case (i = 0 || j = 0) and find the lcs for all other cases.
         for (int i = 1; i <= idx1; i++) {
             for (int j = 1; j <= idx2; j++) {
-                _spaceTimeComplexity.call();
+                _spaceTimeComplexity.iterate();
                 if (seq1[i - 1] == seq2[j - 1]) {
                     lcsMatrix[i][j] = lcsMatrix[i - 1][j - 1] + 1;
                 } else {
@@ -110,8 +110,11 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
 
     @Override
     public void run() {
-        char[] seq1 = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'a', 'g', 'b', 'b', 'e', 'f', 'h', 'z','b', 'e', 'y', 'f', 'h'};
-        char[] seq2 = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'a', 'b', 'g', 'b', 'e', 'y', 'f', 'h','b', 'e', 'f', 'h', 'z'};
+        char[] seq1 = new char[]{'a', 'b', 'c', 'd', 'h', 'i', 'j', 'k', 'l', 'o', 'p','q', 'r', 's', 't', 'a'};
+        char[] seq2 = new char[]{'a', 't', 's', 'r', 'n', 'm', 'l', 'k', 'j', 'g', 'f','e', 'd', 'c', 'b', 'a'};
+
+//        char[] seq1 = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'a', 'g', 'b', 'b', 'e', 'f', 'h', 'z','b', 'e', 'y', 'f', 'h'};
+//        char[] seq2 = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'a', 'b', 'g', 'b', 'e', 'y', 'f', 'h','b', 'e', 'f', 'h', 'z'};
 
 //        char[] seq1 = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p','q', 'r', 's', 't', 'a'};
 //        char[] seq2 = new char[]{'a', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f','e', 'd', 'c', 'b', 'a'};

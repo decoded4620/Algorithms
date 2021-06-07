@@ -1,6 +1,5 @@
 package com.learning.java.algorithmdemo;
 
-import com.learning.java.algorithmdemo.AlgorithmDemo;
 import com.learning.java.utils.SpaceTimeComplexity;
 
 
@@ -51,6 +50,7 @@ public class PrintPermutations implements AlgorithmDemo {
         } else {
             // keep searching
             for (var i = l; i <= r; i++) {
+                _spaceTimeComplexity.iterate();
                 // swap and print remaining permutations
                 doSwap(chars, l, i);
                 findPermutations(chars, l + 1, r);

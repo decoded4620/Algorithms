@@ -1,6 +1,5 @@
 package com.learning.java.algorithmdemo;
 
-import com.learning.java.algorithmdemo.AlgorithmDemo;
 import com.learning.java.utils.SpaceTimeComplexity;
 
 import java.util.HashMap;
@@ -28,6 +27,7 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
             return n;
         }
 
+        // break it into a depth first binary search tree (left then right)
         int fibonacci = fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
         _spaceTimeComplexity.pop();
         return fibonacci;
@@ -51,20 +51,24 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
             return cache.get(n);
         }
 
-        int lastFibo1 = fibonacciMemoized(n - 1, cache);
-        int lastFibo2 = fibonacciMemoized(n - 2, cache);
+        // left and right binary search tree
+        int fibL = fibonacciMemoized(n - 1, cache);
+        int fibR = fibonacciMemoized(n - 2, cache);
 
-        cache.put(n - 1, lastFibo1);
-        cache.put(n - 2, lastFibo2);
+        // cache the values for memoization
+        cache.put(n - 1, fibL);
+        cache.put(n - 2, fibR);
 
-        var result = lastFibo1 + lastFibo2;
+        var result = fibL + fibR;
+
+        // cache the result value as well
         cache.put(n, result);
         _spaceTimeComplexity.pop();
-        return lastFibo1 + lastFibo2;
+        return fibL + fibR;
     }
 
     private int fibonacciTabulated(int n) {
-
+        _spaceTimeComplexity.call();
         _spaceTimeComplexity.push();
         if (n == 0 || n == 1) {
             _spaceTimeComplexity.pop();
@@ -80,7 +84,7 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
             int saveNext = nextFibo;
             nextFibo = firstFibo + nextFibo;
             firstFibo = saveNext;
-            _spaceTimeComplexity.call();
+            _spaceTimeComplexity.iterate();
         }
 
         _spaceTimeComplexity.pop();
@@ -94,10 +98,10 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
         // recursive run (complexity is O(2^N) with O(n) space)
         for(int i = 0; i < totalRuns; i++) {
             _spaceTimeComplexity.timeStart();
-            int fiboNumber = fibonacciRecursive(i);
+            int fibNumber = fibonacciRecursive(i);
             _spaceTimeComplexity.timeStop();
             _spaceTimeComplexity.addAnswer();
-            System.out.printf("Fibo: %d, ", fiboNumber);
+            System.out.printf("Fib: %d, ", fibNumber);
             _spaceTimeComplexity.printStats();
             _spaceTimeComplexity.reset();
         }
@@ -108,9 +112,9 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
         // recursive run (complexity is O(2^N) with O(n) space)
         for(int i = 0; i < totalRuns; i++) {
             _spaceTimeComplexity.timeStart();
-            int fiboNumber = fibonacciMemoized(i, new HashMap<>());
+            int fibNumber = fibonacciMemoized(i, new HashMap<>());
             _spaceTimeComplexity.timeStop();
-            System.out.printf("Fibo: %d, ", fiboNumber);
+            System.out.printf("Fib: %d, ", fibNumber);
             _spaceTimeComplexity.addAnswer();
             _spaceTimeComplexity.printStats();
             _spaceTimeComplexity.reset();
@@ -120,9 +124,9 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
         // recursive run (complexity is O(n) with O(1) space)
         for(int i = 0; i < totalRuns; i++) {
             _spaceTimeComplexity.timeStart();
-            int fiboNumber = fibonacciTabulated(i);
+            int fibNumber = fibonacciTabulated(i);
             _spaceTimeComplexity.timeStop();
-            System.out.printf("Fibo: %d ,", fiboNumber);
+            System.out.printf("Fib: %d ,", fibNumber);
             _spaceTimeComplexity.addAnswer();
             _spaceTimeComplexity.printStats();
             _spaceTimeComplexity.reset();
