@@ -1,6 +1,6 @@
-package com.learning.java.backtracking;
+package com.learning.java.algorithmdemo;
 
-import com.learning.java.AlgorithmDemo;
+import com.learning.java.algorithmdemo.AlgorithmDemo;
 import com.learning.java.utils.SpaceTimeComplexity;
 
 
@@ -86,7 +86,7 @@ public class PrintPermutations implements AlgorithmDemo {
      * The complexity is exponential, and even at 127358058 permutations per second, it is not feasible
      * to find permutations for arrays larger than 16 elements
      *
-     * Selected class from input args: com.learning.java.backtracking.PrintPermutations
+     * Selected class from input args: com.learning.java.algorithmdemo.PrintPermutations
      * Find permutations for {1}
      * Total Calls: 3, Max Stack 2, Total Answers 2, Total Time 24300 (0.000024 sec)
      * Find permutations for {12}

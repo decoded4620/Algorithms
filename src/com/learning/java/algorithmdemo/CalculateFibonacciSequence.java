@@ -1,6 +1,6 @@
-package com.learning.java.dynamic;
+package com.learning.java.algorithmdemo;
 
-import com.learning.java.AlgorithmDemo;
+import com.learning.java.algorithmdemo.AlgorithmDemo;
 import com.learning.java.utils.SpaceTimeComplexity;
 
 import java.util.HashMap;

@@ -1,6 +1,7 @@
 package com.learning.java;
 
-import com.learning.java.backtracking.PrintPermutations;
+import com.learning.java.algorithmdemo.AlgorithmDemo;
+import com.learning.java.algorithmdemo.PrintPermutations;
 
 import java.lang.reflect.InvocationTargetException;
 
