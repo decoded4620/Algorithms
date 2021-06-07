@@ -33,14 +33,13 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
         return fibonacci;
     }
 
-    private final Map<Integer, Integer> memoizedFibonacciMap = new HashMap<>();
 
     /**
      * Calculates the nth Fibonacci number using memoized recursion
      * @param n the Fibonacci sequence number to calculate
      * @return the final Nth Fibonacci number.
      */
-    private int fibonacciMemoized(int n) {
+    private int fibonacciMemoized(int n, Map<Integer, Integer> cache) {
         _spaceTimeComplexity.call();
         _spaceTimeComplexity.push();
         if (n == 0 || n == 1) {
@@ -48,24 +47,24 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
             return n;
         }
 
-        if (memoizedFibonacciMap.containsKey(n)) {
-            return memoizedFibonacciMap.get(n);
+        if (cache.containsKey(n)) {
+            return cache.get(n);
         }
 
-        int lastFibo1 = fibonacciMemoized(n - 1);
-        int lastFibo2 = fibonacciRecursive(n - 2);
+        int lastFibo1 = fibonacciMemoized(n - 1, cache);
+        int lastFibo2 = fibonacciMemoized(n - 2, cache);
 
-        memoizedFibonacciMap.put(n - 1, lastFibo1);
-        memoizedFibonacciMap.put(n - 2, lastFibo2);
+        cache.put(n - 1, lastFibo1);
+        cache.put(n - 2, lastFibo2);
 
         var result = lastFibo1 + lastFibo2;
-        memoizedFibonacciMap.put(n, result);
+        cache.put(n, result);
         _spaceTimeComplexity.pop();
         return lastFibo1 + lastFibo2;
     }
 
     private int fibonacciTabulated(int n) {
-        _spaceTimeComplexity.call();
+
         _spaceTimeComplexity.push();
         if (n == 0 || n == 1) {
             _spaceTimeComplexity.pop();
@@ -81,6 +80,7 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
             int saveNext = nextFibo;
             nextFibo = firstFibo + nextFibo;
             firstFibo = saveNext;
+            _spaceTimeComplexity.call();
         }
 
         _spaceTimeComplexity.pop();
@@ -108,7 +108,7 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
         // recursive run (complexity is O(2^N) with O(n) space)
         for(int i = 0; i < totalRuns; i++) {
             _spaceTimeComplexity.timeStart();
-            int fiboNumber = fibonacciMemoized(i);
+            int fiboNumber = fibonacciMemoized(i, new HashMap<>());
             _spaceTimeComplexity.timeStop();
             System.out.printf("Fibo: %d, ", fiboNumber);
             _spaceTimeComplexity.addAnswer();
@@ -155,15 +155,15 @@ public class CalculateFibonacciSequence implements AlgorithmDemo {
      * Fibo: 21, Total Calls: 27, Max Stack 8, Total Answers 1, Total Time 17200 (0.000017 sec)
      * Fibo: 34, Total Calls: 43, Max Stack 9, Total Answers 1, Total Time 29800 (0.000030 sec)
      * --------------------- Tabulated Fibonacci ---------------------
-     * Fibo: 0 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 5500 (0.000006 sec)
-     * Fibo: 1 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1000 (0.000001 sec)
-     * Fibo: 1 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
-     * Fibo: 2 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
-     * Fibo: 3 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
-     * Fibo: 5 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1300 (0.000001 sec)
-     * Fibo: 8 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1200 (0.000001 sec)
-     * Fibo: 13 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1400 (0.000001 sec)
-     * Fibo: 21 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1300 (0.000001 sec)
-     * Fibo: 34 ,Total Calls: 1, Max Stack 1, Total Answers 1, Total Time 1000 (0.000001 sec)
+     * Fibo: 0 ,Total Calls Or Iterations: 0, Max Stack 1, Total Answers 1, Total Time 8900 (0.000009 sec)
+     * Fibo: 1 ,Total Calls Or Iterations: 0, Max Stack 1, Total Answers 1, Total Time 1600 (0.000002 sec)
+     * Fibo: 1 ,Total Calls Or Iterations: 1, Max Stack 1, Total Answers 1, Total Time 2200 (0.000002 sec)
+     * Fibo: 2 ,Total Calls Or Iterations: 2, Max Stack 1, Total Answers 1, Total Time 2100 (0.000002 sec)
+     * Fibo: 3 ,Total Calls Or Iterations: 3, Max Stack 1, Total Answers 1, Total Time 2300 (0.000002 sec)
+     * Fibo: 5 ,Total Calls Or Iterations: 4, Max Stack 1, Total Answers 1, Total Time 2400 (0.000002 sec)
+     * Fibo: 8 ,Total Calls Or Iterations: 5, Max Stack 1, Total Answers 1, Total Time 2700 (0.000003 sec)
+     * Fibo: 13 ,Total Calls Or Iterations: 6, Max Stack 1, Total Answers 1, Total Time 2500 (0.000003 sec)
+     * Fibo: 21 ,Total Calls Or Iterations: 7, Max Stack 1, Total Answers 1, Total Time 2600 (0.000003 sec)
+     * Fibo: 34 ,Total Calls Or Iterations: 8, Max Stack 1, Total Answers 1, Total Time 3100 (0.000003 sec)
      */
 }
