@@ -108,6 +108,41 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
         return lcsMatrix[idx1][idx2];
     }
 
+    /**
+     * Calculates the LCS using dynamic programming technique, but with an improved auxiliary space
+     * implementation where the use of a matrix is replaced by a 2D array of only 2 rows, overwriting
+     * older memoized answers after they're no longer needed.
+     *
+     * @param seq1 the first sequence
+     * @param seq2 the second sequence
+     * @param idx1 the index on the first sequence
+     * @param idx2 the index on the second sequence
+     * @return the longest common subsequence.
+     */
+    private int lcsDynamicImproved(char[] seq1, char[] seq2, int idx1, int idx2) {
+        _spaceTimeComplexity.call();
+        _spaceTimeComplexity.push();
+
+        // store the lcs for a given indices. Note this handles initializing the base case as well (e.g. i or j == 0) since
+        // the matrix is filled with 0's already.
+        final int[][] lcsMatrix = new int[2][idx2 + 1];
+
+        // skip the base case (i = 0 || j = 0) and find the lcs for all other cases.
+        for (int i = 1; i <= idx1; i++) {
+            for (int j = 1; j <= idx2; j++) {
+                _spaceTimeComplexity.iterate();
+                if (seq1[i - 1] == seq2[j - 1]) {
+                    lcsMatrix[i % 2][j] = lcsMatrix[(i - 1) % 2][j - 1] + 1;
+                } else {
+                    lcsMatrix[i % 2][j] = Math.max(lcsMatrix[(i - 1) % 2][j], lcsMatrix[i % 2][j - 1]);
+                }
+            }
+        }
+
+        _spaceTimeComplexity.pop();
+        return lcsMatrix[idx1%2][idx2];
+    }
+
     @Override
     public void run() {
         char[] seq1 = new char[]{'a', 'b', 'c', 'd', 'h', 'i', 'j', 'k', 'l', 'o', 'p','q', 'r', 's', 't', 'a'};
@@ -123,7 +158,7 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
         _spaceTimeComplexity.timeStart();
         int lcsR = lcsRecursive(seq1, seq2, seq1.length, seq2.length);
         _spaceTimeComplexity.timeStop();
-        System.out.printf("Lcs: %d, ", lcsR);
+        System.out.printf("LcsR: %d, ", lcsR);
         _spaceTimeComplexity.addAnswer();
         _spaceTimeComplexity.printStats();
         _spaceTimeComplexity.reset();
@@ -132,7 +167,7 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
         _spaceTimeComplexity.timeStart();
         int lcsM = lcsMemoized(seq1, seq2, seq1.length, seq2.length, new int[seq1.length + 1][seq2.length + 1]);
         _spaceTimeComplexity.timeStop();
-        System.out.printf("Lcs: %d, ", lcsM);
+        System.out.printf("LcsM: %d, ", lcsM);
         _spaceTimeComplexity.addAnswer();
         _spaceTimeComplexity.printStats();
         _spaceTimeComplexity.reset();
@@ -142,7 +177,16 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
         _spaceTimeComplexity.timeStart();
         int lcsD = lcsDynamic(seq1, seq2, seq1.length, seq2.length);
         _spaceTimeComplexity.timeStop();
-        System.out.printf("Lcs: %d, ", lcsD);
+        System.out.printf("LcsD: %d, ", lcsD);
+        _spaceTimeComplexity.addAnswer();
+        _spaceTimeComplexity.printStats();
+        _spaceTimeComplexity.reset();
+
+        System.out.println("----------------- Dynamic Improved LCS run --------------------");
+        _spaceTimeComplexity.timeStart();
+        int lcsDI = lcsDynamicImproved(seq1, seq2, seq1.length, seq2.length);
+        _spaceTimeComplexity.timeStop();
+        System.out.printf("LcsI: %d, ", lcsDI);
         _spaceTimeComplexity.addAnswer();
         _spaceTimeComplexity.printStats();
         _spaceTimeComplexity.reset();
@@ -178,5 +222,15 @@ public class LongestCommonSubsequence implements AlgorithmDemo {
      *
      * We can also see that for sparsely similar sequences, the memoized version is also magnitudes faster than the brute force.
      * However, the dynamic / tabulated version stays consistent and predictable.
+     *
+     * With the improved LCS run, we can see that there are further time and space savings:
+     * ----------------- Recursive LCS run --------------------
+     * LcsR: 3, Total Calls: 61615654444, Total Iterations: 0, Max Stack 40, Total Answers 1, Total Time 273305990935 (273.305991 sec)
+     * ----------------- Memoized LCS run --------------------
+     * LcsM: 3, Total Calls: 2097130, Total Iterations: 0, Max Stack 40, Total Answers 1, Total Time 19147003 (0.019147 sec)
+     * ----------------- Dynamic LCS run --------------------
+     * LcsD: 3, Total Calls: 1, Total Iterations: 441, Max Stack 1, Total Answers 1, Total Time 78132 (0.000078 sec)
+     * ----------------- Dynamic Improved LCS run --------------------
+     * LcsI: 3, Total Calls: 1, Total Iterations: 441, Max Stack 1, Total Answers 1, Total Time 50486 (0.000050 sec)
      */
 }

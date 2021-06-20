@@ -45,6 +45,7 @@ public class SpaceTimeComplexity {
         _totalCalls = 0;
         _totalTime = 0;
         _totalAnswers = 0;
+        _totalIterations = 0;
     }
     public void printStats() {
         System.out.printf("Total Calls: %d, Total Iterations: %d, Max Stack %d, Total Answers %d, Total Time %d (%f sec)%n",
