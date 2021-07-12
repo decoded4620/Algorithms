@@ -9,6 +9,7 @@ public class SpaceTimeComplexity {
     private long _maxStack = 0;
     private long _recursionIdx = 0;
     private long _totalTime = 0;
+    private long _totalSize = 0;
 
     public void timeStart() {
         _stopWatch.start();
@@ -39,6 +40,14 @@ public class SpaceTimeComplexity {
         _totalAnswers++;
     }
 
+    public void addSize(long size) {
+        _totalSize += size;
+    }
+
+    public void setTotalSize(long size) {
+        _totalSize = size;
+    }
+
     public void reset() {
         _recursionIdx = 0;
         _maxStack = 0;
@@ -46,9 +55,10 @@ public class SpaceTimeComplexity {
         _totalTime = 0;
         _totalAnswers = 0;
         _totalIterations = 0;
+        _totalSize = 0;
     }
     public void printStats() {
-        System.out.printf("Total Calls: %d, Total Iterations: %d, Max Stack %d, Total Answers %d, Total Time %d (%f sec)%n",
-                _totalCalls, _totalIterations, _maxStack, _totalAnswers, _totalTime, _totalTime / 1_000_000_000.0);
+        System.out.printf("Total Calls: %d, Total Iterations: %d, Total Size: %d, Max Stack %d, Total Answers %d, Total Time %d (%f sec)%n",
+                _totalCalls, _totalIterations, _totalSize, _maxStack, _totalAnswers, _totalTime, _totalTime / 1_000_000_000.0);
     }
 }
