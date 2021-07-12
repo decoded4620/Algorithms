@@ -20,7 +20,7 @@ public class PrintPermutations implements AlgorithmDemo {
      * @param l     the anchor index
      * @param i     another index, larger than l
      */
-    public void doSwap(char[] chars, int l, int i) {
+    private void doSwap(char[] chars, int l, int i) {
         if (l == i) {
             return;
         }
